@@ -1,12 +1,13 @@
 const express = require('express');
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
-// Example route
-app.get('/', (req, res) => {
-    res.json({ message: 'Welcome to the API!' });
-});
+// Use the router from routes/index.js
+const indexRouter = require('./routes/index');
+app.use('/', indexRouter);
+
+// Optionally, serve static files for other assets (css, js, images)
+app.use(express.static('frontend'));
 
 // Start server
 app.listen(PORT, () => {
